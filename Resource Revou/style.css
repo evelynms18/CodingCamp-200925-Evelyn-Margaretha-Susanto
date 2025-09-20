@@ -1,45 +1,83 @@
-"use strict";
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f4f8;
+  color: #333;
+  margin: 0;
+  padding: 20px;
+}
 
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("todo-form");
-  const todoInput = document.getElementById("todo-input");
-  const dateInput = document.getElementById("date-input");
-  const todoList = document.getElementById("todo-list");
-  const filterInput = document.getElementById("filter-input");
+.container {
+  max-width: 600px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const task = todoInput.value;
-    const date = dateInput.value;
+h1 {
+  text-align: center;
+  color: #4a90e2;
+}
 
-    if (!task || !date) {
-      alert("Silakan pilih aktivitas dan tanggal.");
-      return;
-    }
+form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
 
-    const li = document.createElement("li");
-    li.innerHTML = `${task} - ${date} <button class="delete-btn">Hapus</button>`;
-    todoList.appendChild(li);
+select,
+input[type="date"],
+input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-width: 150px;
+}
 
-    todoInput.value = "";
-    dateInput.value = "";
-  });
+button {
+  padding: 10px 15px;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
-  todoList.addEventListener("click", (e) => {
-    if (e.target.classList.contains("delete-btn")) {
-      e.target.parentElement.remove();
-    }
-  });
+button:hover {
+  background-color: #357ab8;
+}
 
-  filterInput.addEventListener("input", () => {
-    const filter = filterInput.value.toLowerCase();
-    const tasks = todoList.getElementsByTagName("li");
+.filter {
+  margin-bottom: 10px;
+}
 
-    Array.from(tasks).forEach((task) => {
-      const text = task.textContent.toLowerCase();
-      task.style.display = text.includes(filter) ? "" : "none";
-    });
-  });
-});
+#todo-list {
+  list-style: none;
+  padding: 0;
+}
 
+#todo-list li {
+  background: #e3f2fd;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
+.delete-btn {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-btn:hover {
+  background: #c0392b;
+}
